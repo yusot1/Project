@@ -5,7 +5,7 @@ APP_VERSION = os.getenv("APP_VERSION", "1.0.0")
 
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s %(levelname)s %(mwssage)s",
+    format="%(asctime)s %(levelname)s %(message)s",
     filename="app.log",
 )
 logger = logging.getLogger("notes")
@@ -64,7 +64,7 @@ def get_note(note_id:int):
 @app.delete("/notes/{note_id}")
 def delete_note(note_id: int):
     if note_id not in notes:
-        loger.warning("Note %s not found", note_id)
+        logger.warning("Note %s not found", note_id)
         return {"error": "Note not found"}
     del notes[note_id]
     logger.info("Delete note id=%s", note_id)
